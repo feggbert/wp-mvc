@@ -102,7 +102,7 @@ class MvcRouter {
 	public function admin_url_params($options=array()) {
 		$params = array();
 		if (!empty($options['controller'])) {
-			$controller = preg_replace('/^admin_/', '', $options['controller']);
+			$controller = strtolower(MvcInflector::pluralize(preg_replace('/^admin_/', '', $options['controller'])));
 			$params['page'] = 'mvc_'.$controller;
 			if (!empty($options['action']) && $options['action'] != 'index') {
 				$params['page'] .= '-'.$options['action'];
